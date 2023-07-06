@@ -5,6 +5,7 @@ import { UpdateUserDto } from './dto/update-user.dto';
 
 @Injectable()
 export class UsersRepository {
+ 
 
   constructor(private readonly prisma: PrismaService) {}
 
@@ -28,6 +29,10 @@ export class UsersRepository {
 
   signIn(body: UpdateUserDto) {
     return  'oi'
+  }
+
+  async findUserById(id: number) {
+    return await this.prisma.user.findFirst({where: {id}})
   }
  
 }

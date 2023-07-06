@@ -6,6 +6,7 @@ import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UsersService {
+ 
 
   constructor(private readonly usersRepository: UsersRepository) {}
 
@@ -28,6 +29,12 @@ export class UsersService {
 
   async signIn(body: UpdateUserDto) {
     return await this.usersRepository.signIn(body)
+  }
+
+  async findUserById(id: number) {
+    const user =  await this.usersRepository.findUserById(id)
+    if(!user) throw new HttpException("User doesn't exists", HttpStatus.NOT_FOUND)
+    return user
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {

@@ -25,10 +25,10 @@ export class UsersController {
     return this.usersService.findAll();
   }
 
-  // @Get(':id')
-  // findOne(@Param('email',) email: string) { //usando parseIntPipe para mudar o id para number
-  //   return this.usersService.findByEmail(email);
-  // }
+  @Get(':id')
+  findUserById(@Param('id', ParseIntPipe) id: number) { //usando parseIntPipe para mudar o id para number
+    return this.usersService.findUserById(id);
+  }
 
   @Patch(':id')
   update(@Param('id', ParseIntPipe) id: number, @Body() updateUserDto: UpdateUserDto) { 
