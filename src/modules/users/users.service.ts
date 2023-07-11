@@ -5,18 +5,17 @@ import { UsersRepository } from './users.repository';
 import * as bcrypt from 'bcrypt';
 
 @Injectable()
-export class UsersService {
- 
+export class UsersService { 
 
   constructor(private readonly usersRepository: UsersRepository) {}
-
+  
   async create(body: CreateUserDto) {
     const user = await this.findByEmail(body.email);
-    console.log(user)
     if (user)
       throw new HttpException('User already exists', HttpStatus.CONFLICT);
     const hashPassword = bcrypt.hashSync(body.password, 12);
-    await this.usersRepository.create({ ...body, password: hashPassword });
+    
+    return await this.usersRepository.create({ ...body, password: hashPassword });
   }
 
   findAll() {

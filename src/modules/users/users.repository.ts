@@ -10,7 +10,7 @@ export class UsersRepository {
   constructor(private readonly prisma: PrismaService) {}
 
   async create(body: CreateUserDto) {
-    await this.prisma.user.create({ data: body });
+    return await this.prisma.user.create({ data: body });
   }
   async findAll() {
     return await this.prisma.user.findMany({

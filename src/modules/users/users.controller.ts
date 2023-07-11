@@ -10,13 +10,15 @@ export class UsersController {
 
   @Post('user')
   create(@Body() body: CreateUserDto) {
-    console.log(body)
+
+    
+  
     return this.usersService.create(body);
   }
 
   @Post('signin')
   signIn(@Body() body: UpdateUserDto) {
-    console.log(body)
+  
     return this.usersService.signIn(body);
   }
 
