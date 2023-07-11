@@ -3,9 +3,11 @@ import { AuthSigninDTO } from './dto/auth-signin.dto';
 import { AuthService } from './auth.service';
 import { AuthSignupDTO } from './dto/auth-signup.dto';
 
-@Controller('auth')
+@Controller()
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
+
+  
   @HttpCode(200)
   @Post('signin')
   async signin(@Body() body: AuthSigninDTO) {

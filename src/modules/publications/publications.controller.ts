@@ -11,29 +11,30 @@ export class PublicationsController {
   constructor(private readonly publicationsService: PublicationsService) {}
 
   @UseGuards(AuthGuard)
-  @Post()
+  @Post('')
   create(@UserRequest() user:User, @Body() body: CreatePublicationDto) {
     return this.publicationsService.create(user, body);
   }
 
   @UseGuards(AuthGuard)
   @Get('all')
-  findUserPublications(@UserRequest() user:User) {    
+  findUserPublications(@UserRequest() user:User) {
+    console.log('oi')    
     return this.publicationsService.findUserPublications(user.id);
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.publicationsService.findOne(+id);
-  }
+  //  @Get(':id')
+  // findOne(@Param('id') id: string) {
+  //   return this.publicationsService.findOne(+id);
+  // }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updatePublicationDto: UpdatePublicationDto) {
-    return this.publicationsService.update(+id, updatePublicationDto);
-  }
+  // @Patch(':id')
+  // update(@Param('id') id: string, @Body() updatePublicationDto: UpdatePublicationDto) {
+  //   return this.publicationsService.update(+id, updatePublicationDto);
+  // }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.publicationsService.remove(+id);
-  }
+  // @Delete(':id')
+  // remove(@Param('id') id: string) {
+  //   return this.publicationsService.remove(+id);
+  // }
 }

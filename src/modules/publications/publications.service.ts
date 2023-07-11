@@ -35,15 +35,15 @@ export class PublicationsService {
     return publications
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} publication`;
-  }
+  // findOne(id: number) {
+  //   return `This action returns a #${id} publication`;
+  // }
 
-  update(id: number, updatePublicationDto: UpdatePublicationDto) {
-    return `This action updates a #${id} publication`;
-  }
+  // update(id: number, updatePublicationDto: UpdatePublicationDto) {
+  //   return `This action updates a #${id} publication`;
+  // }
 
-  remove(id: number) {
-    return `This action removes a #${id} publication`;
-  }
+  // remove(id: number) {
+  //   return `This action removes a #${id} publication`;
+  // }
 }
