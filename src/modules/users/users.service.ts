@@ -26,9 +26,6 @@ export class UsersService {
     return await this.usersRepository.findByEmail(email);
   }
 
-  async signIn(body: UpdateUserDto) {
-    return await this.usersRepository.signIn(body)
-  }
 
   async findUserById(id: number) {
     const user =  await this.usersRepository.findUserById(id)

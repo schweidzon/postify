@@ -1,20 +1,25 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@nestjs/common';
 import { PublicationsService } from './publications.service';
 import { CreatePublicationDto } from './dto/create-publication.dto';
 import { UpdatePublicationDto } from './dto/update-publication.dto';
+import { AuthGuard } from '../auth/authGuard/auth.guard';
+import { UserRequest } from '../auth/decorators/user.decorator';
+import { User } from '@prisma/client';
 
 @Controller('publications')
 export class PublicationsController {
   constructor(private readonly publicationsService: PublicationsService) {}
 
+  @UseGuards(AuthGuard)
   @Post()
-  create(@Body() createPublicationDto: CreatePublicationDto) {
-    return this.publicationsService.create(createPublicationDto);
+  create(@UserRequest() user:User, @Body() body: CreatePublicationDto) {
+    return this.publicationsService.create(user, body);
   }
 
-  @Get()
-  findAll() {
-    return this.publicationsService.findAll();
+  @UseGuards(AuthGuard)
+  @Get('all')
+  findAll(@UserRequest() user:User) {    
+    return this.publicationsService.findAll(user.id);
   }
 
   @Get(':id')

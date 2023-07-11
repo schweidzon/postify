@@ -1,10 +1,12 @@
 export class Publication {
+
   constructor(
     private _title: string,
     private _text: string,
     private _dateToPublish: Date,
     private _published: boolean,
     private _socialMedia: string,
+    private _createdAt: Date,
     private readonly userId: number,
   ) {}
 
@@ -37,5 +39,11 @@ export class Publication {
   }
   public set title(value: string) {
     this._title = value;
+  }
+  public get createdAt(): Date {
+    return this._createdAt;
+  }
+  public set createdAt(value: Date) {
+    this._createdAt = value;
   }
 }
