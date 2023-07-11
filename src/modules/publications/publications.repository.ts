@@ -8,7 +8,9 @@ import { PrismaService } from 'src/prisma/prisma.service';
 @Injectable()
 export class PublicationsRepository {
   constructor(private readonly prisma: PrismaService) {}
-  async findAll(userId: number): Promise<Publication[]> {
+
+
+  async findUserPublications(userId: number): Promise<Publication[]> {
     return await this.prisma.publication.findMany({where: {user_id: userId}})
   }
 

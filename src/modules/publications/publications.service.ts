@@ -29,8 +29,8 @@ export class PublicationsService {
     return await this.publicationsRepository.create(publicationInfo);
   }
 
- async  findAll(userId: number) {
-    const publications = await this.publicationsRepository.findAll(userId)
+ async  findUserPublications(userId: number) {
+    const publications = await this.publicationsRepository.findUserPublications(userId)
     if(publications.length === 0) throw new NotFoundException('No publications found for this user')
     return publications
   }

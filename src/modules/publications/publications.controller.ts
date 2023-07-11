@@ -18,8 +18,8 @@ export class PublicationsController {
 
   @UseGuards(AuthGuard)
   @Get('all')
-  findAll(@UserRequest() user:User) {    
-    return this.publicationsService.findAll(user.id);
+  findUserPublications(@UserRequest() user:User) {    
+    return this.publicationsService.findUserPublications(user.id);
   }
 
   @Get(':id')
