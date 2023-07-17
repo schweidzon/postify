@@ -12,7 +12,7 @@ export class PublicationsService {
 
   async create(user: User, body: CreatePublicationDto) {
      const publication = await this.publicationsRepository.findByTitle(body.title);
-     console.log(publication)
+   
      if (publication)
        throw new ConflictException('This title is already in use');
 

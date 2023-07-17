@@ -5,6 +5,7 @@ import { UsersService } from '../users/users.service';
 import { UsersRepository } from '../users/users.repository';
 import { JwtService } from '@nestjs/jwt';
 import { User } from '@prisma/client';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class AuthService {
@@ -27,6 +28,9 @@ export class AuthService {
   async signin(body: AuthSigninDTO) {
     const user = await this.usersRepository.findByEmail(body.email);
     if (!user) throw new UnauthorizedException('Email or password invalid');
+    const checkPassword = bcrypt.compareSync(body.password, user.password)
+    if(!checkPassword) throw new UnauthorizedException('Email or password invalid');
+    
     return this.createToken(user)
   }
 

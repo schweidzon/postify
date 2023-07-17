@@ -19,7 +19,7 @@ export class PublicationsController {
   @UseGuards(AuthGuard)
   @Get('all')
   findUserPublications(@UserRequest() user:User) {
-    console.log('oi')    
+
     return this.publicationsService.findUserPublications(user.id);
   }
 
